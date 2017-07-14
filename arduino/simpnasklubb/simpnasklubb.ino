@@ -1,15 +1,20 @@
-int a1, b1, c1, a2, b2, c2;
-a1 = 30898.220428979403;
-b1 = -201.21130741705954;
-c1 = 0.5812805865181612;
-a2 = 48024.53810250233;
-b2 = 312.4980718667971;
-c2 = -0.9201749693656163;
+#include <Time.h>
+
+double a1 = 30898.220428979403;
+double b1 = -201.21130741705954;
+double c1 = 0.5812805865181612;
+double a2 = 48024.53810250233;
+double b2 = 312.4980718667971;
+double c2 = -0.9201749693656163;
 int lfl = 2500;
 int fill = 8000 - lfl;
 
-boolean isNigth() {
-  return TRUE;
+boolean isNight() {
+  int d = month() * 30 + day();
+  int sunrise = (int)(a1 + b1 * d + c1 * d * d);
+  int sunset = (int)(a2 + b2 * d + c2 * d * d);
+  int s = hour() * 60 + second();
+  return s > sunset || s < sunrise;
 }
 
 void setup() {
