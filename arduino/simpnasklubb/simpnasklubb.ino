@@ -20,6 +20,8 @@ boolean isNight() {
 void setup() {
   pinMode(13, OUTPUT);
   unsigned long time = 1500983752;
+  // Time difference for Sweden
+  time = time + 365 * 24 * 3600;
   setTime(time);
 }
 
