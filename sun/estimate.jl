@@ -12,3 +12,5 @@ X = hcat(ones(length(dates)), dates, dates.^2)
 a1 = (X' * X) \ X' * sunrise
 a2 = (X' * X) \ X' * sunset
 writedlm(string(ARGS[1], "_out"), vcat(a1, a2))
+
+# input as days and output as seconds for sunrise and sunset

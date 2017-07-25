@@ -10,15 +10,17 @@ int fl = 700;
 int fill = 15000 - 3 * 2 * fl;
 
 boolean isNight() {
-  int d = month() * 30 + day();
-  int sunrise = (int)(a0 + a1 * d + a2 * d * d);
-  int sunset = (int)(b0 + b1 * d + b2 * d * d);
-  int s = hour() * 60 + second();
+  long d = (month() - 1) * 30 + day();
+  long sunrise = (long)(a0 + a1 * d + a2 * d * d);
+  long sunset = (long)(b0 + b1 * d + b2 * d * d);
+  long s = (long)hour() * 3600 + minute() * 60 + second();
   return s > sunset || s < sunrise;
 }
 
 void setup() {
   pinMode(13, OUTPUT);
+  unsigned long time = 1500983273;
+  setTime(time);
 }
 
 void loop() {
@@ -30,5 +32,7 @@ void loop() {
       delay(fl);
     }
     delay(fill);
+  } else {
+  	delay(5 * 60000);
   }
 }
