@@ -19,7 +19,9 @@ boolean isNight() {
 
 void setup() {
   pinMode(13, OUTPUT);
-  unsigned long time = 1500983273;
+  unsigned long time = 0;
+  // Time zone for France
+  time = time + 365 * 24 * 3600;
   setTime(time);
 }
 
