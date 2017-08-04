@@ -1,7 +1,9 @@
 #!/bin/bash
+printf "Estimating parameters\n"
 julia estimate.jl la_jument
 julia estimate.jl simpnasklubb
 
+printf "Deploying parameters\n"
 LA_JUMENT=($(cat la_jument_out))
 sed -i 0,/double\ a0\ =.*/s//double\ a0\ =\ ${LA_JUMENT[0]}\;/ ../arduino/la_jument/la_jument.ino
 sed -i 0,/double\ a1\ =.*/s//double\ a1\ =\ ${LA_JUMENT[1]}\;/ ../arduino/la_jument/la_jument.ino
