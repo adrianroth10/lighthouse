@@ -1,4 +1,5 @@
 #include <Time.h>
+#include <Extras.h>
 
 double a0 = 32421.890507333548;
 double a1 = -110.37915299955947;
@@ -9,24 +10,17 @@ double b2 = -0.6533837940808941;
 int fl = 700;
 int fill = 15000 - 3 * 2 * fl;
 
-boolean isNight() {
-  long d = (month() - 1) * 30 + day();
-  long sunrise = (long)(a0 + a1 * d + a2 * d * d);
-  long sunset = (long)(b0 + b1 * d + b2 * d * d);
-  long s = (long)hour() * 3600 + minute() * 60 + second();
-  return s > sunset || s < sunrise;
-}
-
 void setup() {
   pinMode(13, OUTPUT);
   unsigned long time = 0;
   // Time zone for France
-  time = time + 365 * 24 * 3600;
+  time = time + 3600;
   setTime(time);
 }
 
 void loop() {
-  if (isNight()) {
+  if (isNight(a0, a1, a2, b0, b1, b2,
+  	      month(), day(), hour(), minute(), second())) {
     for (int i = 0; i < 3; i++) {
       digitalWrite(13, HIGH);
       delay(fl);
