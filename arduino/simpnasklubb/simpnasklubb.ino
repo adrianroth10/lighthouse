@@ -13,8 +13,6 @@ int fill = 8000 - lfl;
 void setup() {
   pinMode(13, OUTPUT);
   unsigned long time = 0;
-  // Time zone for Sweden
-  time = time + 3600;
   setTime(time);
 }
 

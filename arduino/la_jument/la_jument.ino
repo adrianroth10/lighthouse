@@ -13,8 +13,6 @@ int fill = 15000 - 3 * 2 * fl;
 void setup() {
   pinMode(13, OUTPUT);
   unsigned long time = 0;
-  // Time zone for France
-  time = time + 3600;
   setTime(time);
 }
 
