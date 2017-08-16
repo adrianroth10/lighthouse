@@ -6,7 +6,7 @@
 # 	simpnasklubb
 cd arduino/$1
 
-DATE=$(date +%d)
+DATE=$(date +%s)
 # Fixing time zone and summer time
 H1=$(date +%H)
 H2=$(date -u +%H)
