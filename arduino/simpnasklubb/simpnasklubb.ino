@@ -1,24 +1,22 @@
-#include <Time.h>
-#include <Extras.h>
+#include <IsNight.h>
 
-double a0 = 33274.22042897941;
-double a1 = -201.21130741705943;
-double a2 = 0.581280586518161;
-double b0 = 50400.538102502316;
-double b1 = 312.4980718667972;
-double b2 = -0.9201749693656168;
-int lfl = 2500;
-int fill = 8000 - lfl;
+const double a0 = 33274.22042897941;
+const double a1 = -201.21130741705943;
+const double a2 = 0.581280586518161;
+const double b0 = 50400.538102502316;
+const double b1 = 312.4980718667972;
+const double b2 = -0.9201749693656168;
+const int lfl = 2500;
+const int fill = 8000 - lfl;
 
 void setup() {
   pinMode(13, OUTPUT);
   unsigned long time = 0;
-  setTime(time);
+  setTimeOver(time);
 }
 
 void loop() {
-  if (isNight(a0, a1, a2, b0, b1, b2,
-  	      month(), day(), hour(), minute(), second())) {
+  if (isNight(a0, a1, a2, b0, b1, b2)) {
     digitalWrite(13, HIGH);
     delay(lfl);
     digitalWrite(13, LOW);
