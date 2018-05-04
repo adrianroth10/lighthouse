@@ -9,22 +9,22 @@ const double b2 = -0.6533837940808941;
 const int fl = 700;
 const int fill = 15000 - 3 * 2 * fl;
 
-void setup() {
-  pinMode(13, OUTPUT);
-  unsigned long time = 0;
-  setTimeOver(time);
+void setup()
+{
+	pinMode(13, OUTPUT);
 }
 
-void loop() {
-  if (isNight(a0, a1, a2, b0, b1, b2)) {
-    for (int i = 0; i < 3; i++) {
-      digitalWrite(13, HIGH);
-      delay(fl);
-      digitalWrite(13, LOW);
-      delay(fl);
-    }
-    delay(fill);
-  } else {
-  	delay(5 * 60000);
-  }
+void loop()
+{
+	if (isNight(a0, a1, a2, b0, b1, b2)) {
+		for (int i = 0; i < 3; i++) {
+			digitalWrite(13, HIGH);
+			delay(fl);
+			digitalWrite(13, LOW);
+			delay(fl);
+		}
+		delay(fill);
+	} else {
+		delay(5 * 60000);
+	}
 }

@@ -9,19 +9,19 @@ const double b2 = -0.9201749693656168;
 const int lfl = 2500;
 const int fill = 8000 - lfl;
 
-void setup() {
-  pinMode(13, OUTPUT);
-  unsigned long time = 0;
-  setTimeOver(time);
+void setup()
+{
+	pinMode(13, OUTPUT);
 }
 
-void loop() {
-  if (isNight(a0, a1, a2, b0, b1, b2)) {
-    digitalWrite(13, HIGH);
-    delay(lfl);
-    digitalWrite(13, LOW);
-    delay(fill);
-  } else {
-  	delay(5 * 60000);
-  }
+void loop()
+{
+	if (isNight(a0, a1, a2, b0, b1, b2)) {
+		digitalWrite(13, HIGH);
+		delay(lfl);
+		digitalWrite(13, LOW);
+		delay(fill);
+	} else {
+		delay(5 * 60000);
+	}
 }
