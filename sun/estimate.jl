@@ -1,10 +1,13 @@
-data, header = readdlm(ARGS[1], '\t', String, '\n', header=true)
+using Base.Dates.datetime2unix
 
+data, header = readdlm(ARGS[1], '\t', AbstractString, '\n', header=true)
+
+zerodate = datetime2unix(DateTime())
 dates = map(x -> DateTime(x, "mm-dd"), data[:, 1])
-dates = map(Dates.datetime2epochms, dates) / 1000 / 3600 / 24 - 365
+dates = (map(datetime2unix, dates) - zerodate) / 3600 / 24
 dates = reshape(dates, length(dates), 1)
 times = map(x -> DateTime(x, "HH-MM"), data[:, 2:3])
-times = map(Dates.datetime2epochms, times) / 1000 - 3.16224e7 # normalizing the epoch
+times = map(datetime2unix, times) - zerodate
 sunrise = times[:, 1:1]
 sunset = times[:, 2:2]
 
