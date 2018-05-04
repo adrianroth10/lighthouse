@@ -1,11 +1,11 @@
 #include <IsNight.h>
 
-const double a0 = 33274.22042897941;
-const double a1 = -201.21130741705943;
-const double a2 = 0.581280586518161;
-const double b0 = 50400.538102502316;
-const double b1 = 312.4980718667972;
-const double b2 = -0.9201749693656168;
+const double a0 = 33073.59040214887;
+const double a1 = -200.04874624402333;
+const double a2 = .5812805865181618;
+const double b0 = 50712.11599939978;
+const double b1 = 310.6577219280652;
+const double b2 = -.9201749693656144;
 const int lfl = 2500;
 const int fill = 8000 - lfl;
 
