@@ -7,8 +7,7 @@ set -e
 # 	simpnasklubb
 #	web (or launch the web page
 
-
-if [[ $1 -eq "web" ]]; then
+if [ "$1" = "web" ]; then
 	function error_trap {
 		printf "Error occured!\n"
 		printf "Cleaning\n"
@@ -35,9 +34,6 @@ if [[ $1 -eq "web" ]]; then
 
 	printf "Done\n"
 else
-	cd arduino/setTime
-	make upload
-
-	cd arduino/$1
-	make upload
+	make -C arduino/setTime upload
+	make -C arduino/$1 upload
 fi
