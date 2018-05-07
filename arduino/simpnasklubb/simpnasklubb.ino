@@ -1,3 +1,4 @@
+#include <Wire.h>
 #include <IsNight.h>
 
 const double a0 = 33073.59040214887;
@@ -11,6 +12,7 @@ const int fill = 8000 - lfl;
 
 void setup()
 {
+	Wire.begin();
 	pinMode(13, OUTPUT);
 }
 

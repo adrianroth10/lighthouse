@@ -17,7 +17,7 @@ void parseCurrentTime(byte *s, byte *m, byte *h,
 	*m = lm;
 	*h = lh;
 	*D = lD;
-	*M = (strstr(month_names, s_month)-month_names)/3;
+	*M = (strstr(month_names, s_month)-month_names)/3 + 1;
 	*Y = lY - 2000;
 }
 

@@ -30,6 +30,7 @@ bool isNight(double a0, double a1, double a2,
 {
 	int s, m, h, D, M, Y;
 	getTime(&s, &m, &h, &D, &M, &Y);
+
 	long d = ((long)M - 1) * 30 + (long)D;
 	long sunrise = (long)(a0 + a1 * d + a2 * d * d);
 	long sunset = (long)(b0 + b1 * d + b2 * d * d);
