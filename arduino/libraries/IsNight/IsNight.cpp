@@ -1,5 +1,5 @@
 #include "IsNight.h"
-#include "/usr/share/arduino/libraries/Wire/Wire.h"
+#include "Wire.h"
 #include "Arduino.h"
 
 byte bcdToDec(byte val)
