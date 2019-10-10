@@ -1,3 +1,4 @@
+#include <avr/power.h>
 #include <Wire.h>
 #include <IsNight.h>
 
@@ -12,6 +13,10 @@ const int fill = 8000 - lfl;
 
 void setup()
 {
+	CLKPR = 0x80;
+	CLKPR = 0x08;
+	// clock_prescale_set(256);
+	power_adc_disable();
 	Wire.begin();
 	pinMode(13, OUTPUT);
 }
@@ -20,10 +25,10 @@ void loop()
 {
 	if (isNight(a0, a1, a2, b0, b1, b2)) {
 		digitalWrite(13, HIGH);
-		delay(lfl);
+		sleep(lfl);
 		digitalWrite(13, LOW);
-		delay(fill);
+		sleep(fill);
 	} else {
-		delay(5 * 60000);
+		day_sleep(b0, b1, b2);
 	}
 }

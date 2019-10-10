@@ -1,4 +1,5 @@
 #include "IsNight.h"
+#include "LowPower.h"
 #include "Wire.h"
 #include "Arduino.h"
 
@@ -36,4 +37,35 @@ bool isNight(double a0, double a1, double a2,
 	long sunset = (long)(b0 + b1 * d + b2 * d * d);
 	long sec = (long)h * 3600 + (long)m * 60 + (long)s;
 	return sec > sunset || sec < sunrise;
+}
+
+enum {
+	TWO = 2000,
+	FOUR = 4000,
+	EIGHT = 8000
+};
+
+void sleep(int ms) {
+	int n_eight, n_four, n_two, rest;
+	n_eight = ms / EIGHT;
+	rest = ms % EIGHT;
+	n_four = rest / FOUR;
+	rest = rest % FOUR;
+	n_two = rest / TWO;
+	rest = rest % TWO;
+	for (int i = 0; i < n_eight; i++) {
+		LowPower.powerDown(SLEEP_8S, ADC_ON, BOD_OFF);
+	}
+	if (n_four) LowPower.powerDown(SLEEP_4S, ADC_ON, BOD_OFF);
+	if (n_two) LowPower.powerDown(SLEEP_2S, ADC_ON, BOD_OFF);
+	delay(rest);
+}
+
+void day_sleep(double b0, double b1, double b2)
+	int s, m, h, D, M, Y;
+	getTime(&s, &m, &h, &D, &M, &Y);
+	long d = ((long)M - 1) * 30 + (long)D;
+	long sunset = (long)(b0 + b1 * d + b2 * d * d);
+	long sec = (long)h * 3600 + (long)m * 60 + (long)s;
+	sleep((sunset - sec) * 1000);
 }
