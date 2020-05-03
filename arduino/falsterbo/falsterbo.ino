@@ -12,6 +12,8 @@ const int fill = 12000 - 4 * 2 * fl;
 
 int special_days[] = {5, 4};
 int special_days_length = 1;
+// int special_days[] = {4, 5,  4, 10,  5, 15,  8, 19};
+// int special_days_length = 4;
 
 void setup()
 {
