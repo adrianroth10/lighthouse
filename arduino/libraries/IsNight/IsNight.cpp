@@ -26,13 +26,19 @@ void getTime(int *second, int *minute, int *hour,
 	*year = bcdToDec(Wire.read());
 }
 
+int calculate_days(int M, int D)
+{
+	long d = ((long)M - 1) * 30 + (long)D;
+	return d;
+}
+
 bool isNight(double a0, double a1, double a2,
 		double b0, double b1, double b2)
 {
 	int s, m, h, D, M, Y;
 	getTime(&s, &m, &h, &D, &M, &Y);
 
-	long d = ((long)M - 1) * 30 + (long)D;
+	long d = calculate_days(M, D);
 	long sunrise = (long)(a0 + a1 * d + a2 * d * d);
 	long sunset = (long)(b0 + b1 * d + b2 * d * d);
 	long sec = (long)h * 3600 + (long)m * 60 + (long)s;
@@ -45,7 +51,7 @@ enum {
 	EIGHT = 8000
 };
 
-void sleep(int ms) {
+void sleep(long ms) {
 	int n_eight, n_four, n_two, rest;
 	n_eight = ms / EIGHT;
 	rest = ms % EIGHT;
@@ -61,11 +67,26 @@ void sleep(int ms) {
 	delay(rest);
 }
 
-void day_sleep(double b0, double b1, double b2)
+void day_sleep(double a0, double a1, double a2,
+		double b0, double b1, double b2)
+{
+	if (isNight(a0, a1, a2, b0, b1, b2)) return;
 	int s, m, h, D, M, Y;
 	getTime(&s, &m, &h, &D, &M, &Y);
-	long d = ((long)M - 1) * 30 + (long)D;
+	long d = calculate_days(M, D);
 	long sunset = (long)(b0 + b1 * d + b2 * d * d);
 	long sec = (long)h * 3600 + (long)m * 60 + (long)s;
 	sleep((sunset - sec) * 1000);
+}
+
+bool is_special_day(int *special_days, int length)
+{
+	int s, m, h, D, M, Y;
+	getTime(&s, &m, &h, &D, &M, &Y);
+	for (int i = 0; i < length; i++) {
+		if (M == special_days[2*i] && D == special_days[2*i + 1]) {
+			return 1;
+		}
+	}
+	return 0;
 }

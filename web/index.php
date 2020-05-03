@@ -5,5 +5,6 @@
  <?php
 	include 'la_jument.php';
 	include 'simpnasklubb.php';
+	include 'falsterbo.php';
 	echo "<br> Time: " . date("H:i:s") . "<br>";
 ?>

@@ -1,12 +1,12 @@
 #include <Wire.h>
 #include <IsNight.h>
 
-const double a0 = 32311.827255221066;
-const double a1 = -109.74735122541995;
-const double a2 = .3159008870699148;
-const double b0 = 59092.08075177983;
-const double b1 = 219.76836259192618;
-const double b2 = -.6533837940808918;
+const double a0 = 32311.827255;
+const double a1 = -109.747351;
+const double a2 = 0.315901;
+const double b0 = 59092.080752;
+const double b1 = 219.768363;
+const double b2 = -0.653384;
 const int fl = 700;
 const int fill = 15000 - 3 * 2 * fl;
 
