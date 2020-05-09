@@ -79,12 +79,12 @@ void day_sleep(double a0, double a1, double a2,
 	sleep((sunset - sec) * 1000);
 }
 
-bool is_special_day(int *special_days, int length)
+bool is_special_date(int *special_date, int length)
 {
 	int s, m, h, D, M, Y;
 	getTime(&s, &m, &h, &D, &M, &Y);
 	for (int i = 0; i < length; i++) {
-		if (M == special_days[2*i] && D == special_days[2*i + 1]) {
+		if (M == special_date[2*i] && D == special_date[2*i + 1]) {
 			return 1;
 		}
 	}

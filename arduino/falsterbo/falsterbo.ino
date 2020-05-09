@@ -10,10 +10,8 @@ const double b2 = -0.798887;
 const int fl = 700;
 const int fill = 12000 - 4 * 2 * fl;
 
-int special_days[] = {5, 4};
-int special_days_length = 1;
-// int special_days[] = {4, 5,  4, 10,  5, 15,  8, 19};
-// int special_days_length = 4;
+int special_dates[] = {4, 5,  4, 10,  5, 15,  8, 19};
+int special_dates_length = 4;
 
 void setup()
 {
@@ -31,7 +29,20 @@ void set_pins(int value)
 
 void loop()
 {
-	if (!is_special_day(special_days, special_days_length)) {
+	if (isNight(a0, a1, a2, b0, b1, b2) || is_special_date(special_dates, special_dates_length)) {
+		for (int i = 0; i < 4; i++) {
+			set_pins(HIGH);
+			delay(fl);
+			set_pins(HIGH);
+			delay(fl);
+		}
+		delay(fill);
+	} else {
+		delay(5 * 60000);
+	}
+
+	/*
+	if (!is_special_day(special_dates, special_dates_length)) {
 	  day_sleep(a0, a1, a2, b0, b1, b2);
 	}
 
@@ -42,4 +53,5 @@ void loop()
 		delay(fl);
 	}
 	delay(fill);
+	*/
 }

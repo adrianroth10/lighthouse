@@ -9,7 +9,7 @@ bool isNight(double a0, double a1, double a2,
 void sleep(long ms);
 void day_sleep(double a0, double a1, double a2,
 		double b0, double b1, double b2);
-bool is_special_day(int *special_days, int length);
+bool is_special_date(int *special_date, int length);
 
 #endif // __cplusplus
 #endif /* _ISNIGHT */
