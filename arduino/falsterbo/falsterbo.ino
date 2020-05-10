@@ -33,7 +33,7 @@ void loop()
 		for (int i = 0; i < 4; i++) {
 			set_pins(HIGH);
 			delay(fl);
-			set_pins(HIGH);
+			set_pins(LOW);
 			delay(fl);
 		}
 		delay(fill);
