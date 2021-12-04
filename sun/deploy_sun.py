@@ -18,8 +18,10 @@ def to_file(f, params):
         tf.write(data)
         tf.truncate()
 
-def deploy_sun_params(f):
-    params_file = '{}_out'.format(f)
+def deploy_sun_params(f, in_file=None):
+    if in_file is None:
+        in_file = f
+    params_file = '{}_out'.format(in_file)
     params = np.loadtxt(params_file).flatten()
     arduino_file = '../arduino/{}/{}.ino'.format(f, f)
     web_file = '../web/{}.php'.format(f)
@@ -31,3 +33,4 @@ if __name__ == '__main__':
     deploy_sun_params('la_jument')
     deploy_sun_params('simpnasklubb')
     deploy_sun_params('falsterbo')
+    deploy_sun_params('drogden', 'falsterbo') # has the same sun as falsterbo

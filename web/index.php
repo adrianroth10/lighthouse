@@ -1,10 +1,14 @@
  <head>
   <meta charset="UTF-8">
 </head>
-<h2> Lighthouses </h2>
+<h1> Lighthouses </h1>
  <?php
-	include 'la_jument.php';
-	include 'simpnasklubb.php';
-	include 'falsterbo.php';
+  $files = glob("*.php");
+
+  for ($i = 0; $i < count($files); $i++) {
+    if ($files[$i] != "index.php") {
+      include $files[$i];
+    }
+  }
 	echo "<br> Time: " . date("H:i:s") . "<br>";
 ?>

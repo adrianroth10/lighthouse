@@ -67,16 +67,24 @@ void sleep(long ms) {
 	delay(rest);
 }
 
-void day_sleep(double a0, double a1, double a2,
-		double b0, double b1, double b2)
+int secs_til_night(double b0, double b1, double b2)
 {
-	if (isNight(a0, a1, a2, b0, b1, b2)) return;
 	int s, m, h, D, M, Y;
 	getTime(&s, &m, &h, &D, &M, &Y);
 	long d = calculate_days(M, D);
 	long sunset = (long)(b0 + b1 * d + b2 * d * d);
 	long sec = (long)h * 3600 + (long)m * 60 + (long)s;
-	sleep((sunset - sec) * 1000);
+  return (int)(sunset - sec);
+}
+
+void day_sleep(double b0, double b1, double b2)
+{
+	int s, m, h, D, M, Y;
+	getTime(&s, &m, &h, &D, &M, &Y);
+	long d = calculate_days(M, D);
+	long sunset = (long)(b0 + b1 * d + b2 * d * d);
+	long sec = (long)h * 3600 + (long)m * 60 + (long)s;
+	sleep(secs_til_night(b0, b1, b2) * 1000);
 }
 
 bool is_special_date(int *special_date, int length)
