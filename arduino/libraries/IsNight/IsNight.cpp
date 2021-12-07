@@ -52,7 +52,11 @@ enum {
 };
 
 void sleep(long ms) {
+  if (ms <= 0) return;
+  long ms_compensation = 0.0447 * ms;
 	int n_eight, n_four, n_two, rest;
+
+  ms = ms - ms_compensation;
 	n_eight = ms / EIGHT;
 	rest = ms % EIGHT;
 	n_four = rest / FOUR;
@@ -67,24 +71,25 @@ void sleep(long ms) {
 	delay(rest);
 }
 
-int secs_til_night(double b0, double b1, double b2)
+long secs_til_night(double b0, double b1, double b2)
 {
 	int s, m, h, D, M, Y;
 	getTime(&s, &m, &h, &D, &M, &Y);
 	long d = calculate_days(M, D);
 	long sunset = (long)(b0 + b1 * d + b2 * d * d);
 	long sec = (long)h * 3600 + (long)m * 60 + (long)s;
-  return (int)(sunset - sec);
+  return sunset - sec;
 }
 
 void day_sleep(double b0, double b1, double b2)
 {
-	int s, m, h, D, M, Y;
-	getTime(&s, &m, &h, &D, &M, &Y);
-	long d = calculate_days(M, D);
-	long sunset = (long)(b0 + b1 * d + b2 * d * d);
-	long sec = (long)h * 3600 + (long)m * 60 + (long)s;
-	sleep(secs_til_night(b0, b1, b2) * 1000);
+  long secs;
+  secs = secs_til_night(b0, b1, b2);
+  while (secs > 2) {
+    sleep(secs * 1000);
+    secs = secs_til_night(b0, b1, b2);
+  }
+  delay(secs * 1000 + 1000); // to make sure the night has begun
 }
 
 bool is_special_date(int *special_date, int length)
