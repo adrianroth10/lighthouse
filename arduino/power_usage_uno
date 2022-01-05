@@ -1,0 +1,10 @@
+All in milliampere
+Day
+  sleep 
+    ADC_ON, BOD_OFF 24.4
+    ADC_OFF, BOD_OFF 24.2
+  delay 33.3
+Night
+  sleep 25
+  light 35
+  delay 35

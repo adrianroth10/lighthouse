@@ -10,23 +10,25 @@ const double b2 = -0.653384;
 const int fl = 700;
 const int fill = 15000 - 3 * 2 * fl;
 
+const int pin = 13;
+
 void setup()
 {
 	Wire.begin();
-	pinMode(13, OUTPUT);
+	pinMode(pin, OUTPUT);
 }
 
 void loop()
 {
 	if (isNight(a0, a1, a2, b0, b1, b2)) {
 		for (int i = 0; i < 3; i++) {
-			digitalWrite(13, HIGH);
-			delay(fl);
-			digitalWrite(13, LOW);
-			delay(fl);
+			digitalWrite(pin, HIGH);
+			sleep(fl);
+			digitalWrite(pin, LOW);
+			sleep(fl);
 		}
-		delay(fill);
+		sleep(fill);
 	} else {
-		delay(5 * 60000);
+    day_sleep(b0, b1, b2);
 	}
 }

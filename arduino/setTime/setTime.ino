@@ -52,7 +52,7 @@ void setup()
 	byte second, minute, hour, day, month, year;
 	parseCurrentTime(&second, &minute, &hour,
 			&day, &month, &year);
-	//setTime(second, minute, hour, day, month, year);
+	setTime(second, minute, hour, day, month, year);
 }
 
 void displayTime()

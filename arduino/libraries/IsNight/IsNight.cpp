@@ -64,7 +64,7 @@ void sleep(long ms) {
 	n_two = rest / TWO;
 	rest = rest % TWO;
 	for (int i = 0; i < n_eight; i++) {
-		LowPower.powerDown(SLEEP_8S, ADC_ON, BOD_OFF);
+		LowPower.powerDown(SLEEP_8S, ADC_OFF, BOD_OFF);
 	}
 	if (n_four) LowPower.powerDown(SLEEP_4S, ADC_ON, BOD_OFF);
 	if (n_two) LowPower.powerDown(SLEEP_2S, ADC_ON, BOD_OFF);
