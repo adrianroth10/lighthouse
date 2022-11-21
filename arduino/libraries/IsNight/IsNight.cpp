@@ -49,10 +49,14 @@ enum {
 	TWO = 2000,
 	FOUR = 4000,
 	EIGHT = 8000
-};
+}; 
 
 void sleep(long ms) {
   if (ms <= 0) return;
+  else if (ms <= TWO) {
+    delay(ms);
+    return;
+  }
   long ms_compensation = 0.0447 * ms;
 	int n_eight, n_four, n_two, rest;
 
@@ -64,7 +68,7 @@ void sleep(long ms) {
 	n_two = rest / TWO;
 	rest = rest % TWO;
 	for (int i = 0; i < n_eight; i++) {
-		LowPower.powerDown(SLEEP_8S, ADC_OFF, BOD_OFF);
+		LowPower.powerDown(SLEEP_8S, ADC_ON, BOD_OFF);
 	}
 	if (n_four) LowPower.powerDown(SLEEP_4S, ADC_ON, BOD_OFF);
 	if (n_two) LowPower.powerDown(SLEEP_2S, ADC_ON, BOD_OFF);
@@ -85,10 +89,8 @@ void day_sleep(double b0, double b1, double b2)
 {
   long secs;
   secs = secs_til_night(b0, b1, b2);
-  while (secs > 2) {
-    sleep(secs * 1000);
-    secs = secs_til_night(b0, b1, b2);
-  }
+  sleep(secs * 1000);
+  secs = secs_til_night(b0, b1, b2);
   delay(secs * 1000 + 1000); // to make sure the night has begun
 }
 

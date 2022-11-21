@@ -53,6 +53,8 @@ void setup()
 	parseCurrentTime(&second, &minute, &hour,
 			&day, &month, &year);
 	setTime(second, minute, hour, day, month, year);
+  //setTime(0, 16, 17, 15, 1, 0);
+
 }
 
 void displayTime()
@@ -80,6 +82,8 @@ void displayTime()
 
 void loop()
 {
+  
 	displayTime();
-	delay(1000);
+  delay(200);
+	//sleep((long) 2*3600 * 1000);
 }

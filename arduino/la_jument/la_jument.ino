@@ -14,6 +14,7 @@ const int pin = 13;
 
 void setup()
 {
+  // Serial.begin(9600);
 	Wire.begin();
 	pinMode(pin, OUTPUT);
 }
@@ -21,14 +22,15 @@ void setup()
 void loop()
 {
 	if (isNight(a0, a1, a2, b0, b1, b2)) {
+    Serial.println("Night");
 		for (int i = 0; i < 3; i++) {
 			digitalWrite(pin, HIGH);
-			sleep(fl);
+			delay(fl);
 			digitalWrite(pin, LOW);
-			sleep(fl);
+			delay(fl);
 		}
 		sleep(fill);
 	} else {
-    day_sleep(b0, b1, b2);
+    sleep(296000);  // 37 * 8 seconds ~ 5 min
 	}
 }
