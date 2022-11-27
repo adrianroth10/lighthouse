@@ -1,4 +1,4 @@
-<h2> Falsterbo/Drogden (Sweden)</h2>
+<h2> Drogden (Sweden)</h2>
  <?php
 	$a0 = 32313.729583;
 	$a1 = -158.733227;
